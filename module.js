@@ -4,4 +4,5 @@ exports.setName = function(thyName){
 }
 exports.sayHello = function(){
 	console.log('hello '+name);
+	console.log('12312312');
 }
