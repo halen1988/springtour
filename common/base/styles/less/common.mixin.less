@@ -1,0 +1,189 @@
+@import url('common.var.less');
+
+.rem (@property, @value) {
+  @px-fallback: @value * @fontRoot;
+  -: ~`(function () { return ';@{property}: @{px-fallback}'; }())`;
+  -: ~`(function () { return ';@{property}: @{value}rem'; }())`;
+}
+
+.px-rem-update-unit (@currentProperty) when (isunit(@currentProperty, "px")) {
+  @calculatedValue: unit(@currentProperty) / @fontRoot * 1rem;
+  @calculatedProperty: ~"@{calculatedValue}";
+}
+
+.px-rem-update-unit (@currentProperty) when not (isunit(@currentProperty, "px")) {
+  @calculatedProperty: @currentProperty;
+}
+
+
+.px-rem-gen (@count, @pxIPList, @pxFPList, @propertyName) when (@count = 0) {
+    @{propertyName}: @pxFPList;
+}
+
+//Recursive Loop: with units
+//  Need to change rem to px here
+//  @param count: The loop counter index
+//  @param pxIPList: The incoming property list
+//  @param pxFPList: The in process final property list
+//  @param propertyName: The CSS property being set
+.px-rem-gen (@count, @pxIPList, @pxFPList, @propertyName) when (@count > 0) {
+  //Getting current property
+  @currentProperty: extract(@pxIPList, @count);
+
+  //Mixin as a function returns updated value
+  .px-rem-update-unit(@currentProperty);
+
+  @udatedValue: @calculatedProperty;
+  //Appending update property
+  @modifiedProperty: ~"@{udatedValue} @{pxFPList}";
+
+  //Recursion
+  .px-rem-gen(@count - 1, @pxIPList, @modifiedProperty, @propertyName);
+}
+/*
+* px转rem
+* @param propertyName css属性名称
+* @param propertyValue css值
+*/
+.border-to-rem(@propertyName, @propertyValue) {
+
+}
+.px-to-rem(@propertyName, @propertyValue) {
+  //Loop counter
+  @count: length(@propertyValue);
+  //Change rem to px
+  .px-rem-gen(@count, @propertyValue, "", @propertyName);
+
+}
+.set-border-by-color(@name, @color) when(@color = 0){
+    @{name}: 0;
+}
+.set-border-by-color(@name, @color) when not(@color = 0){
+    @{name}: 1px;
+}
+.color(@name, @color) when (isColor(@color)){
+    @{name}: @color;
+}
+/*
+* 生成上下左右边框
+* @param width 为4位整数，上右下左分别对应千、百、十、个位，每个位值只有 0或1，0表示该位置无边，1为有
+*  例 0110，表示 4个边框中， 无top、right 1px、bottom 1px、 无left
+*/
+.border-width (@width, @clear, @borderStyle) when (mod(@width , 10) = 1) {
+  .set-border-by-color(border-left-width, @clear);
+  border-left-style: @borderStyle;
+}
+.border-width (@width, @clear, @borderStyle) when (mod(@width , 100) >= 10) {
+  .set-border-by-color(border-bottom-width, @clear);
+  border-bottom-style: @borderStyle;
+}
+.border-width (@width, @clear, @borderStyle) when (mod(@width , 1000) >= 100) {
+  .set-border-by-color(border-right-width, @clear);
+  border-right-style: @borderStyle;
+}
+.border-width (@width, @clear, @borderStyle) when (@width >= 1000) {
+  .set-border-by-color(border-top-width, @clear);
+  border-top-style: @borderStyle;
+}
+
+.radius-ratio(@radius) when(@radius>0){
+  .px-to-rem(border-radius, @radius);
+  @media (-webkit-min-device-pixel-ratio: 2){
+    &:before {
+      .px-to-rem(border-radius, @radius*2);
+    }
+  }
+  @media (-webkit-min-device-pixel-ratio: 3){
+    &:before {
+      .px-to-rem(border-radius, @radius*3);
+    }
+  }
+}
+
+/*
+* 设置retina显示屏边框1px展示方法
+* @param {number} border-width    set border-width, four numbers express top right bottom left
+* @param {string} borderColor    set border-color, but if value equal 0, express set width equal 0
+* @param {string} radius set border-radius
+* @param {string} borderStyle set   border-style
+* @param {number} zIndex 设置边框层级 前置>10,后置<10
+*/
+.border-handle(@border-width: 1111, @borderColor: #ddd, @radius: 0, @borderStyle: solid, @zIndex:10){
+  &:before {
+    .border-width(@border-width, @borderColor, @borderStyle);
+    .color(border-color, @borderColor);
+    .border-to-rem(@isH5, @radius);
+    .z-index(@zIndex);
+  }
+  .radius-ratio(@radius);
+}
+.z-index(@zIndex) when (isnumber(@zIndex)) {
+  z-index: @zIndex;
+}
+
+.border-to-rem (@isH5, @radius) when (@isH5 = true) {
+  .px-to-rem(border-radius, @radius);
+}
+.border-to-rem (@isH5, @radius) when (@isH5 = false) {
+  border-radius: @radius;
+}
+/*
+* 旋转
+*/
+.rotate(@rotate:45deg){
+  transform: rotate(@rotate);
+  -ms-transform: rotate(@rotate);
+  -webkit-transform: rotate(@rotate);
+  -o-transform: rotate(@rotate);
+  -moz-transform: rotate(@rotate);
+}
+/**
+*兼容ie8的,opacity写法
+*/
+.corss_browers_opacity(@opacity: 0.5){
+  -webkit-opacity: 	@opacity;
+  -moz-opacity: @opacity;
+  opacity: @opacity;
+  filter: "alpha(opacity=@{opacity}*100)";
+}
+
+/*
+* css3兼容写法
+*/
+.transformAll(@value){
+  -webkit-transform: @value ;
+  -moz-transform:  @value;
+  -ms-transform:  @value;
+  -o-transform:  @value;
+  transform:  @value;
+}
+.transitionAll(@vaule){
+  -webkit-transition: @vaule;
+  -moz-transition: @vaule;
+  -ms-transition:@vaule;
+  -o-transition: @vaule;
+  transition: @vaule;
+}
+
+.transform-originAll(@val){
+  -webkit-transform-origin:@val;
+  -moz-transform-origin:@val;
+  -ms-transform-origin:@val;
+  -o-transform-origin:@val;
+  transform-origin:@val;
+}
+.flex{
+  display: inline-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+.pre(@style,@value) {
+  -webkit-@{style}: @value;
+  -moz-@{style}: @value;
+  -ms-@{style}: @value;
+  -o-@{style}: @value;
+    @{style}: @value;
+}
+.corss_browers_opacity(@opacity: 0.5) {
+  .pre(opacity,@opacity)
+}

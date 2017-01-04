@@ -1,0 +1,84 @@
+@import url('../common.mixin.less');
+
+/*顶部工具栏css的参数部分*/
+@topbar-height: 88px;
+@topbar-height-expand: 108px;
+@topbar-bgColor: #196ABC;
+
+@main-font: 'PingFang SC', 'San Francisco', 'Helvetica Neue', 'Helvetica', 'sans-serif';
+
+/*
+说明：这是用来设置背景为图标的元素，元素大小和图片大小一致
+使用：见indexNaviBar.less
+*/
+.bgIcon-mixin(@icon,@width,@height) {
+  background: url("../../images/icons/@{icon}") no-repeat center;
+  .px-to-rem(background-size, @width @height);
+}
+
+/*
+说明：这是用来设置flex布局的一个mixin 主要设置3个参数
+    @justify-content 属性定义项目在主轴上如何对齐。
+    @align-items  属性定义项目在交叉轴上如何对齐。
+    @direction:row  主轴方向 默认为水平向右
+使用：indexFooter.less
+*/
+.flex-layout(@justify-content,@align-items,@direction:row) {
+  display: inline-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  flex-direction: @direction;
+  -webkit-flex-direction: @direction;
+  justify-content: @justify-content;
+  -webkit-justify-content: @justify-content;
+  align-items: @align-items;
+  -webkit-align-items: @align-items;
+}
+
+/*用来设置动画属性的keyframes 和animation 防止写太多
+
+*/
+.keyframes(@name; @arguments) {
+  @-moz-keyframes @name { @arguments();
+  }
+  @-webkit-keyframes @name { @arguments();
+  }
+  @keyframes @name { @arguments();
+  }
+}
+
+.animation(@arguments) {
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  animation: @arguments;
+}
+
+.transition(@arguments) {
+  transition: @arguments;
+  -moz-transition: @arguments; /* Firefox 4 */
+  -webkit-transition: @arguments; /* Safari and Chrome */
+  -o-transition: @arguments; /* Opera */
+}
+
+
+/* flexbox display
+** fix cross browsers' problems
+*/
+.flex-display(){
+  display:-webkit-flex;
+  display:inline-flex;
+  display: flex;
+  display:-moz-box;
+  display:-webkit-box;
+}
+
+.flex-item(@columns:1){
+  flex:@columns;
+  -webkit-flex:@columns;
+  -ms-flex:@columns;
+  -moz-box-flex:@columns;
+  -webkit-box-flex:@columns;
+  //box-flex:@columns;
+}
+/*end*/

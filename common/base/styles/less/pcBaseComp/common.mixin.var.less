@@ -1,0 +1,120 @@
+@import url("../common.mixin.less");
+
+@base-width:1440px;
+@screen-large:1270px;
+@screen-pad:950px;
+
+@rootCls-lt950:.lt950;
+@rootCls-950:.w950;
+@rootCls-1270:.w1270;
+
+@navibar-height: 50px;
+
+@mask-z-index:1111;
+
+@icon-path:"../../images/icons/";
+
+@main-font:'PingFang SC','Microsoft Yahei','\5FAE\8F6F\96C5\9ED1',Arial,'Hiragino Sans GB','\5B8B\4F53',system;
+
+/*定义z-indx变量解决z-idnx不通用问题,定义了9类z-index值,请根据需要来使用,如有特殊情况,使用它们之间的值*/
+@top-top:10000;
+@top-middle:9900;
+@top-bottom:9800;
+
+@middle-top:9700;
+@middle-middle:9600;
+@middle-bottom:9500;
+
+@bottom-top:9400;
+@bottom-middle:9300;
+@bottom-bottom:9200;
+
+
+/*
+说明：这是用来设置背景为图标的元素，元素大小和图片大小一致
+使用：见indexNaviBar.less
+*/
+.bgIcon-mixin(@icon,@width,@height) {
+  background: url("@{icon-path}@{icon}") no-repeat center;
+  background-size: @width @height;
+}
+
+/*      !IMPORTANT 设计透明背景颜色请用这个
+ 参数：@color 支持HEX RGB 等
+      @opacity 0-1
+IE8 and other browser for rgba compliance*/
+.bgColorOpacity(@color, @opacity:1) {
+  @rgbaColor: fade(@color,@opacity * 100%);
+  @argbColor: argb(@rgbaColor);
+  background-color: @rgbaColor;
+  //filter:progid:DXImageTransform.Microsoft.Alpha(opacity=@alpha);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@argbColor, endColorstr=@argbColor, GradientType=0);
+}
+
+.opacity(@opacity:1) {
+  @opacityPercentage: @opacity * 100;
+  opacity: @opacity;
+  ///*Netscape*/
+  -moz-opacity: @opacity;
+  ///*for IE*/
+  filter: alpha(opacity=@opacityPercentage);
+}
+
+/*移动上去后背景改边颜色并有透明度*/
+.bgColorHover(@color:#000,@opacity:0.15,@radius:4px){
+  &:hover{
+    .bgColorOpacity(@color,@opacity);
+    border-radius: @radius;
+  }
+}
+
+
+/*楼层字体,颜色,左右边距设置*/
+.content-words-layout(@color: #333333;@margin: 28px 0 0 35px ; @fontsize: 22px;@padding:0px){
+  color: @color;
+  margin: @margin;
+  padding:@padding;
+  font-size: @fontsize;
+}
+/*楼层border-radius兼容性重设置*/
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -o-box-sizing:@radius;
+  -ms-box-sizing:@radius;
+  border-radius: @radius;
+}
+/*楼层box-sizing兼容性重设置*/
+.box-sizing(@box:border-box){
+  -moz-box-sizing:@box;
+  -webkit-box-sizing:@box;
+  -o-box-sizing: @box;
+  -ms-box-sizing: @box;
+  box-sizing:@box
+}
+/*弹性布局*/
+.box-flex(@flex:1){
+   -webkit-box-flex: @flex;
+     -moz-box-flex: @flex;
+       -o-box-flex: @flex;
+      //-ms-flex: @flex;
+        box-flex: @flex;
+}
+
+.display-box(){
+     display: -webkit-box;
+    display: -moz-box;
+    display: -o-box;
+    display: box;
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+}
+.transform-rotate(@rotate:0deg){
+  -webkit-transform: rotate(@rotate);
+       -moz-transform: rotate(@rotate);
+        -ms-transform: rotate(@rotate);
+         -o-transform: rotate(@rotate);
+            transform: rotate(@rotate);
+}

@@ -1,0 +1,226 @@
+@import url('common.mixin.var.less');
+
+@footer-height: 334px;
+@footer-body-height: 270px;
+@footer-tail-height: @footer-height - @footer-body-height;
+
+@footer-header-color: #333;
+@footer-content-color: #000;
+@footer-content-font-size: 12px;
+@footer-content-font-family: @main-font;
+@footer-cpright-font-family: @main-font;
+@footer-header-font-size: 14px;
+@footer-line-height: 24px;
+
+.footer {
+  position: relative;
+  //height: @footer-height;
+  background: white;
+  font-size: @footer-content-font-size;
+  color: @footer-content-color;
+  letter-spacing: 0px;
+  line-height: @footer-line-height;
+  text-align: left;
+
+  .line {
+    .border-handle(0010,#999);
+    //border-bottom: 1px solid #999;
+    .opacity(0.31);
+  }
+
+  .moveleft {
+    margin-bottom: 6px;
+    position: relative;
+    bottom: 7px;
+    left: -16%;
+  }
+
+  .footer-content-wrapper {
+
+    a:hover{
+      text-decoration: underline;
+    }
+    //height: 100%;
+    width: @screen-large;
+    margin: 0 auto;
+
+    @{rootCls-950} & {
+      width: @screen-pad
+    }
+  }
+
+  .footer-body {
+    @group-width: 9%;
+
+    height: @footer-body-height;
+    padding: 20px 0 0;
+
+    a {
+      //cursor: default;
+      color: @footer-content-color;
+      font-family: @footer-content-font-family;
+      .opacity(0.8);
+    }
+
+    > ul {
+      float: left;
+      width: @group-width;
+      padding: 0 2%;
+
+      .li-first-of-type{
+        font-size: @footer-header-font-size;
+        color: @footer-header-color;
+        line-height: 40px;
+        a{ .opacity(1);}
+      }
+      li:first-of-type {
+        .li-first-of-type
+      }
+    }
+
+    .footerLogo {
+      width: @group-width * 2;;
+
+      .footerLogoWrapper {
+        padding-top: 30px;
+      }
+
+      .logopart {
+        @logo-width: 90px;
+        @log-height: 84px;
+
+        width: @logo-width;
+        height: @log-height;
+        .bgIcon-mixin("footerLogo.png", @logo-width, @log-height);
+        margin: 0 auto;
+      }
+
+      .info {
+        text-align: center;
+        color: #666666;
+        line-height: 24px;
+        padding-top: 8px;
+      }
+
+      .signpart {
+        @sign-width: 119px;
+        @sign-height: 18px;
+
+        width: @sign-width;
+        height: @sign-height;
+        .bgIcon-mixin("signature.png", @sign-width, @sign-height);
+        margin: 0 auto;
+      }
+    }
+
+
+  }
+  /*分享部分 二维码 微信 sina*/
+  .share {
+
+    @borderBG-width: 113px;
+    @borderBG-height: 130px;
+    @QR-width: 102px;
+
+    padding-top: 10px;
+    /*背景图片做边框*/
+    .borderBG {
+      width: @borderBG-width;
+      height: @borderBG-height;
+      .bgIcon-mixin("qr_bg.png", @borderBG-width, @borderBG-height);
+    }
+    /*所有二维码同意大小 和位移*/
+    .QR {
+      width: @QR-width;
+      height: @QR-width;
+      position: relative;
+      top: 14px;
+      left: (@borderBG-width - @QR-width )/2;
+    }
+    .appQR {
+      .bgIcon-mixin("qr_download.png", @QR-width, @QR-width);
+    }
+    .sinaQR {
+      .bgIcon-mixin("qr_sina.png", @QR-width, @QR-width);
+    }
+    .wechatQR {
+      .bgIcon-mixin("qr_wechat.png", @QR-width, @QR-width);
+    }
+
+    .focusUs {
+      @qudao-width: 22px;
+      @qudao-height: 22px;
+
+      position: relative;
+      top: 4px;
+      span {
+        display: inline-block;
+        width: @qudao-width;
+        height: @qudao-height;
+        position: absolute;
+      }
+
+      .app {
+        cursor: pointer;
+        line-height: 22px;
+        left: 8px;
+        .opacity(0.5);
+        &:hover,&.selected{
+          .opacity(1);
+        }
+      }
+      .wechat {
+        cursor: pointer;
+        .bgIcon-mixin("pic_wechat.png", @qudao-width, @qudao-height);
+        left: 44px;
+        &:hover,&.selected{
+          .bgIcon-mixin("pic_wechat_selected.png", @qudao-width, @qudao-height);
+        }
+      }
+      .sina {
+        cursor: pointer;
+        .bgIcon-mixin("pic_sina.png", @qudao-width, @qudao-height);
+        left: 78px;
+        &:hover,&.selected{
+          .bgIcon-mixin("pic_sina_selected.png", @qudao-width, @qudao-height);
+        }
+      }
+
+      .selected:after{
+        content:"";
+        background: url("@{icon-path}qr_selector.png") no-repeat center;
+        display: block;
+        width: 13px;
+        height: 13px;
+        top: -8px;
+        right: 3px;
+        position: absolute;
+      }
+    }
+
+
+  }
+
+  .footer-tail {
+    height: @footer-tail-height;
+    padding-top: 17px;
+
+    .left {
+      float: left;
+
+      li {
+        float: left;
+        padding: 0 0 0 8px;
+      }
+
+      a {
+        color: @footer-header-color;
+      }
+    }
+    .right {
+      font-family: @main-font;
+      float: right;
+    }
+  }
+
+}

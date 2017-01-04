@@ -1,0 +1,183 @@
+@import url('./common.mixin.var.less');
+
+//topbar height and backgorund color from common.var.less
+@bar-height: @topbar-height;
+@bar-height-expand: @topbar-height-expand;
+@bar-bgColor: @topbar-bgColor;
+@zIndex: 222;
+
+.topbar {
+  width: 100%;
+  position: fixed;
+  z-index: @zIndex+1;
+  .px-to-rem(height, @bar-height);
+  .transition(height 0.7s);
+  background-color: @bar-bgColor;
+  top:0;
+  //让容器下的子元素水平布局
+  //UC compliance
+  display: inline-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  //每个元素充分占满高度
+  div {
+    .px-to-rem(height, @bar-height);
+  }
+
+  .menu {
+    //icon的大小定义，和一边的边距，用于计算容器大小
+    @icon-width: 48px;
+    @icon-height: 48px;
+    @padding-left: 12px;
+    .bgIcon-mixin("topbar_menu.png", @icon-width, @icon-height);
+    .px-to-rem(width, @icon-width+@padding-left*2);
+    position: absolute;
+    left: 0;
+  }
+
+  .logo {
+    @icon-width: 64px;
+    @icon-height: 64px;
+    @padding-left: 21px;
+    .bgIcon-mixin("logo_white.png", @icon-width, @icon-height);
+    .px-to-rem(width, @icon-width+@padding-left*2);
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .user {
+    @icon-width: 48px;
+    @icon-height: 48px;
+    @padding-right: 12px;
+    .bgIcon-mixin("topbar_mine.png", @icon-width, @icon-height);
+    .px-to-rem(width, @icon-width+@padding-right*2);
+    position: absolute;
+    right: 0;
+  }
+
+  .login{
+    @padding-right: 18px;
+    .px-to-rem(font-size,28px);
+    .px-to-rem(padding,0 @padding-right);
+    .px-to-rem(line-height, @bar-height);
+    color:white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom:0;
+    margin: 0 auto;
+  }
+
+  /*菜单按钮展开后 菜单和用户图标的定义*/
+  &.expanded {
+    .px-to-rem(height, @bar-height-expand);
+    ol{
+      display: block;
+    }
+    .menu {
+      @icon-width: 24px;
+      @icon-height: 24px;
+      .bgIcon-mixin("h5_close.png", @icon-width, @icon-height);
+    }
+
+    //.user {
+    //  visibility: hidden;
+    //}
+  }
+
+}
+
+/*菜单的详细列表项*/
+nav {
+  background: linear-gradient(0deg, #48a7ef 0%, @bar-bgColor 100%);
+  position: fixed;
+  //opacity: 0;
+  width: 100%;
+  height: 0;
+  .px-to-rem(top, -800px);
+  .transition(all 0.7s);
+  z-index: @zIndex;
+  /*菜单展开后的定义*/
+  &.expanded {
+    //height: 100%;
+    //opacity: 1;
+    .px-to-rem(top, @bar-height-expand);
+
+  }
+
+  ol {
+    @item-container-padding: 24px 48px 0 48px;
+    list-style: none;
+    .px-to-rem(padding, @item-container-padding);
+    .flex-layout(space-between, flex-start, column);
+    li {
+      .flex-layout(space-between, center);
+
+      @item-font-color: #ffffff;
+      @item-height: 80px;
+      @item-font-size: 24px;
+      width: 100%;
+      .px-to-rem(height, @item-height);
+      overflow: visible;
+
+      div {
+        width: 100%;
+
+        a {
+          font-family: @main-font;
+          color: @item-font-color;
+          .px-to-rem(font-size, @item-font-size);
+          display: block;
+          height: 100%;
+          width: 100%;
+          .px-to-rem(line-height, @item-height)
+        }
+      }
+
+    }
+    /*mixin 字体和底边透明度定义*/
+    .nth-li(@n) {
+      li:nth-child(@{n}) {
+        opacity: 0.99;
+        border-bottom: 1px solid rgba(255, 255, 255,0.5-0.1*@n)
+      }
+    }
+
+    /*每个的透明度要分别定义*/
+    .nth-li(1);
+    .nth-li(2);
+    .nth-li(3);
+    .nth-li(4);
+    .nth-li(5);
+
+  }
+
+  .btnGroup {
+    @group-padding: 0 38px;
+    .px-to-rem(padding, @group-padding);
+    .px-to-rem(margin-top, 114px);
+    .flex-layout(space-between, center);
+
+    .btn {
+      @btn-height: 68px;
+      @btn-width: 253px;
+      @btn-font-size: 28px;
+      @color: #ffffff;
+      display: block;
+      font-family: @main-font;
+      color: @color;
+      .px-to-rem(height, @btn-height);
+      .px-to-rem(width, @btn-width);
+      .px-to-rem(font-size, @btn-font-size);
+       border: 1px solid @color ;
+      .px-to-rem(border-radius, 4px);
+      text-align: center;
+      //vertical align the text
+      .px-to-rem(line-height, @btn-height);
+      overflow:visible;
+
+    }
+  }
+
+}

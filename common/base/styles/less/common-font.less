@@ -1,0 +1,285 @@
+/**
+ * author:相昌盛
+ * 字体定义
+ */
+/*引入字体*/
+@font-face {
+  font-family: 'yqb_font';
+  src:  url('../images/fonts/yqb_font.eot');
+  src:  url('../images/fonts/yqb_font.eot#iefix') format('embedded-opentype'),
+  url('../images/fonts/yqb_font.ttf') format('truetype'),
+  url('../images/fonts/yqb_font.woff') format('woff'),
+  url('../images/fonts/yqb_font.svg#yqb_font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINAlternate-Bold';
+  src:  url('../images/fonts/DINAlternate-Bold.ttf') format('truetype'),
+  url('../images/fonts/DINAlternate-Bold.woff') format('woff');
+  //url('../images/fonts/yqb_font.svg#yqb_font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="yqbfont_"], [class*=" yqbfont_"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'yqb_font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.yqbfont_gg_touxiang:before {
+  content: "\e94f";
+}
+.yqbfont_dingdan:before {
+  content: "\e94e";
+}
+.yqbfont_gg_jiantou10_shang:before {
+  content: "\e923";
+}
+.yqbfont_gg_jiantou10_xia:before {
+  content: "\e94a";
+}
+.yqbfont_gg_jiantou09_L:before {
+  content: "\e947";
+}
+.yqbfont_gg_jiantou09_R:before {
+  content: "\e948";
+}
+.yqbfont_gg_jiantou01:before {
+  content: "\e910";
+}
+.yqbfont_gg_di01:before {
+  content: "\e946";
+}
+.yqbfont_gg_banner_active:before {
+  content: "\e901";
+}
+.yqbfont_gg_banner_normal:before {
+  content: "\e902";
+}
+.yqbfont_gg_chenhao:before {
+  content: "\e903";
+}
+.yqbfont_gg_danxuan_active:before {
+  content: "\e904";
+}
+.yqbfont_gg_danxuan_normal:before {
+  content: "\e905";
+}
+.yqbfont_gg_gou:before {
+  content: "\e906";
+}
+.yqbfont_gg_gouwu:before {
+  content: "\e907";
+}
+.yqbfont_gg_gouxuan_normal:before {
+  content: "\e908";
+}
+.yqbfont_gg_ganxuan_active:before {
+  content: "\e949";
+}
+.yqbfont_gg_gouxuan01:before {
+  content: "\e909";
+}
+.yqbfont_gg_guanbi:before {
+  content: "\e90a";
+}
+.yqbfont_gg_guangbi02:before {
+  content: "\e90b";
+}
+.yqbfont_gg_jianhao:before {
+  content: "\e90d";
+}
+.yqbfont_gg_jiahao:before {
+  content: "\e90c";
+}
+.yqbfont_gg_jiantou_L:before {
+  content: "\e90e";
+}
+.yqbfont_gg_jiantou_R:before {
+  content: "\e90f";
+}
+.yqbfont_gg_jiantou02_L:before {
+  content: "\e911";
+}
+.yqbfont_gg_jiantou02_R:before {
+  content: "\e912";
+}
+.yqbfont_gg_jiantou03_s:before {
+  content: "\e913";
+}
+.yqbfont_gg_jiantou03_x:before {
+  content: "\e914";
+}
+.yqbfont_gg_jiantou04_s:before {
+  content: "\e915";
+}
+.yqbfont_gg_jiantou05_x:before {
+  content: "\e916";
+}
+.yqbfont_gg_jiantou08:before {
+  content: "\e945";
+}
+.yqbfont_gg_jiantou07:before {
+  content: "\e917";
+}
+.yqbfont_gg_jifen:before {
+  content: "\e918";
+}
+.yqbfont_gg_licai:before {
+  content: "\e919";
+}
+.yqbfont_gg_logo01:before {
+  content: "\e91a";
+}
+.yqbfont_gg_mokuai:before {
+  content: "\e91b";
+}
+.yqbfont_gg_shenghuo:before {
+  content: "\e91c";
+}
+.yqbfont_gg_shezhi:before {
+  content: "\e91d";
+}
+.yqbfont_gg_weibo:before {
+  content: "\e91f";
+}
+.yqbfont_gg_weixin:before {
+  content: "\e920";
+}
+.yqbfont_gg_xialacaidan_X:before {
+  content: "\e921";
+}
+.yqbfont_gg_xialacaidan:before {
+  content: "\e922";
+}
+.yqbfont_gw_gou02:before {
+  content: "\e943";
+}
+.yqbfont_gw_quan02:before {
+  content: "\e944";
+}
+.yqbfont_gw_dian:before {
+  content: "\e94b";
+}
+.yqbfont_gw_dian02:before {
+  content: "\e94d";
+}
+.yqbfont_gw_erweima:before {
+  content: "\e924";
+}
+.yqbfont_gw_fenlei:before {
+  content: "\e925";
+}
+.yqbfont_gw_gouwuche02 .path1:before {
+  content: "\e926";
+  color: rgb(51, 51, 51);
+}
+.yqbfont_gw_gouwuche02 .path2:before {
+  content: "\e927";
+  margin-left: -1.3076171875em;
+  color: rgb(51, 51, 51);
+}
+.yqbfont_gw_gouwuche02 .path3:before {
+  content: "\e928";
+  margin-left: -1.3076171875em;
+  color: rgb(0, 0, 0);
+}
+.yqbfont_gw_gouwuche03:before {
+  content: "\e929";
+}
+.yqbfont_gw_jiagouwuche01 .path1:before {
+  content: "\e92a";
+  color: rgb(0, 0, 0);
+}
+.yqbfont_gw_jiagouwuche01 .path2:before {
+  content: "\e92b";
+  margin-left: -1.111328125em;
+  color: rgb(31, 31, 31);
+}
+.yqbfont_gw_jiagouwuche01 .path3:before {
+  content: "\e92c";
+  margin-left: -1.111328125em;
+  color: rgb(0, 0, 0);
+}
+.yqbfont_gw_jiagouwuche01 .path4:before {
+  content: "\e92d";
+  margin-left: -1.111328125em;
+  color: rgb(0, 0, 0);
+}
+.yqbfont_gw_kefu:before {
+  content: "\e92e";
+}
+.yqbfont_gw_lajitong:before {
+  content: "\e92f";
+}
+.yqbfont_gw_temai:before {
+  content: "\e939";
+}
+.yqbfont_gw_quanyi:before {
+  content: "\e936";
+}
+.yqbfont_gw_piaoquan:before {
+  content: "\e930";
+}
+.yqbfont_gw_pingpaijie:before {
+  content: "\e931";
+}
+.yqbfont_gw_quan01:before {
+  content: "\e933";
+}
+.yqbfont_gw_quan03:before {
+  content: "\e934";
+}
+.yqbfont_gw_quan04:before {
+  content: "\e935";
+}
+.yqbfont_gw_sosuo:before {
+  content: "\e937";
+}
+.yqbfont_gw_sousuojia:before {
+  content: "\e938";
+}
+.yqbfont_gw_xing:before {
+  content: "\e93a";
+}
+.yqbfont_gw_xing_xian:before {
+  content: "\e94c";
+}
+.yqbfont_gw_zuobiao:before {
+  content: "\e93b";
+}
+.yqbfont_wd_hongbao:before {
+  content: "\e93c";
+}
+.yqbfont_wd_xiaoxi:before {
+  content: "\e93d";
+}
+.yqbfont_wd_yinhangka:before {
+  content: "\e93e";
+}
+.yqbfont_wd_zhangdan:before {
+  content: "\e93f";
+}
+.yqbfont_wd_jiankangka:before {
+  content: "\e900";
+}
+.yqbfont_wd_yinghangka:before {
+  content: "\e940";
+}
+.yqbfont_wd_yufufeika:before {
+  content: "\e941";
+}
+.yqbfont_wd_rengzheng:before {
+  content: "\e942";
+}

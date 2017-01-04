@@ -1,0 +1,60 @@
+@import url('common.mixin.var.less');
+
+@breadcrumbs-height: 60px;
+
+.breadcrumbs {
+  height: @breadcrumbs-height;
+  line-height: @breadcrumbs-height;
+  font-size: 12px;
+  border-bottom:  solid 1px #E9EFF4;
+
+  .breadcrumbs-wrapper{
+    position: relative;
+    float: left;
+    padding-left: 20px;
+    //border: 1px solid blue;;
+    li{
+      float:left;
+      padding:0 7px;
+      height: @breadcrumbs-height;
+      line-height: @breadcrumbs-height;
+      display: block;
+      //border: 1px solid red;
+      a:hover{
+        color: #f22d48;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  a{
+    color:#666666;
+    display: inline-block;
+    /*height: @breadcrumbs-height;*/
+    line-height: @breadcrumbs-height;
+    font-size: 14px;
+    &:hover{
+      color:#f22d48;
+    }
+  }
+
+  .indexLogo{
+    font-family: 'yqb_font' !important;
+  }
+  .indexLogo:before {
+    content: "\e91a";
+    font-size: 20px;
+  }
+
+  .seperate{
+    display: block;
+    width: 7px;
+    font-family: 'yqb_font' !important;
+  }
+  .seperate:before{
+    content: "\e911";
+    font-size: 10px;
+    color:#999;
+  }
+}

@@ -1,0 +1,27 @@
+@import url('../../styles/less/common.mixin.less');
+*[data-click] {
+    position:relative;
+    overflow: hidden;
+}
+/*设置半径*/
+*[data-click-radius] {
+    overflow: visible;
+}
+.material-click{
+    position: absolute;
+    z-index: 10;
+    opacity: 0.5;
+    border-radius: 50%;
+    .transformAll(scale(0));
+    -webkit-transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    -moz-transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1), -moz-transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    -ms-transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1), -ms-transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    -o-transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1), -o-transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.material-click-end{
+    opacity: 0;
+    .transformAll(scale(1););
+}
+
+

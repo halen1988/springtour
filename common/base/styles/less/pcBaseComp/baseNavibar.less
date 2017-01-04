@@ -1,0 +1,54 @@
+@import url("common.mixin.var.less");
+
+@navibar-padding: 15px 0 50px;
+@navibar-linkBtn-padding: 0 8px;
+@navibar-btn-font-size: 16px;
+@navibar-btn-font-color: #fff;
+
+.navibar {
+
+  font-size: @navibar-btn-font-size;
+  text-align: center;
+
+  &:after {
+    clear: both;
+  }
+
+  div.navibar-content {
+    padding: @navibar-padding;
+    height: @navibar-height;
+  }
+
+  .inlineBlock() {
+    height: 100%;
+    display: inline-block;
+  }
+
+  .leftLogo {
+    position: relative;
+    float: left;
+    .inlineBlock();
+    width: 15%;
+    //border: solid red 1px;
+  }
+  /*
+          最大框是center  内部2 是innerCenter  按钮在innerCenter中定义 高度等高
+    |     ▕▔▔▔▔▔▔▔▔1▔▔▔▔▔▔▔▔▔▏-->1  @innercenter-padding-top
+    |     ▕▔▔▔▔▔▔▔▔2▔▔▔▔▔▔▔▔▔▏____> 2 @innercenter-height
+    |     ▕▁▁▁▁▁▁▁▁2▁▁▁▁▁▁▁▁▁▏
+    |     ▕▁▁▁▁▁▁▁▁1▁▁▁▁▁▁▁▁▁▏-->1 @innercenter-padding-top
+  */
+  .center {
+    .inlineBlock();
+    //width: 50%;
+  }
+
+  .right  {
+    position: relative;
+    float: right;
+    .inlineBlock();
+    width: 15%;
+  }
+
+}
+

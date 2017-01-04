@@ -1,0 +1,93 @@
+@import url("./common.mixin.var.less");
+
+/*滚动条设置*/
+/* Let's get this party started */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  //background: rgba(255,0,0,0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  //background: rgba(255,0,0,0.4);
+}
+/*滚动条设置 结束*/
+
+.pageWrapper {
+  position: relative;
+  width: auto;
+  opacity: 1.0;
+  //-webkit-transition: background-image 15s ease;
+  //-moz-transition: background-image 15s ease;
+  //-o-transition: background-image 15s ease;
+  //transition: all 15s ease;
+  @{rootCls-950} & {
+    width: auto;
+    min-width: @screen-pad;
+  }
+
+  .IEPrompt{
+    color:#333;
+    font-size: 14px;
+    font-family: @main-font;
+    text-align: center;
+    background-color: white;
+    position: relative;
+    z-index: 9700;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+  }
+}
+.initialBg{
+  background: -webkit-linear-gradient(0deg, #eaeff4 0%, #cddae2 81%, #adbdc7 100%);
+  background: linear-gradient(0deg, #eaeff4 0%, #cddae2 81%, #adbdc7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#adbdc7, endColorstr=#eaeff4,GradientType=0);
+}
+.content {
+  margin: 0 auto;
+  position: relative;
+  //border: solid 1px;
+  //适配IE8的最小高度设置
+  @min-height:700px;
+  min-height: @min-height;
+  height:auto !important ;
+  height:@min-height ;
+
+  min-width: @screen-large;
+  width: @screen-large;
+
+  @{rootCls-950} & {
+    min-width: @screen-pad;
+    width: @screen-pad;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

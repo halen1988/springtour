@@ -1,0 +1,87 @@
+@import (reference) "../../styles/less/common.mixin.less";
+#popup{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+    z-index: 9999999;
+	background-color: rgba(0, 0, 0, 0.4);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	text-align:center;
+    div{
+    	display:inline-block;
+    	max-width:5.4rem;
+    	padding:.24rem .4rem;
+    	text-align: left;
+    	color:#fff;
+		font-size:.28rem;
+		line-height:.4rem;
+		box-sizing:border-box;
+    	background-color: rgba(0, 0, 0, 0.9);
+    	border-radius:6px;
+    	margin: 70% auto;
+    }
+}
+
+.popup-dialog {
+	.popup-dialog-mask {
+		position: fixed;
+		background: rgba(0,0,0,.6);
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 998;
+	}
+	.popup-dialog-main {
+		width: 5.4rem;
+		border-radius: .12rem;
+		background: #e0e0e0;
+		position: fixed;
+		left: 50%;
+		z-index: 999;
+		-webkit-transform: translate(-50%, 0);
+		transform: translate(-50%, 0);
+		.dialog-close {
+			display: none;
+		}
+		.popup-dialog-content{
+			padding: .46rem .32rem;
+			color: #030303;
+		}
+		.popup-dialog-title{
+			text-align: center;
+			font-size: .34rem;
+			padding-bottom: .2rem;
+		}
+		.popup-dialog-text {
+			font-size: .24rem;
+			color: #333;
+			line-height: 1.4;
+			text-align: center;
+		}
+		.popup-dialog-botton {
+			text-align: center;
+			font-size: .32rem;
+			color: #49a6ff;
+			.border-handle(1000,rgba(0, 0, 0, .25));
+			.btn {
+				box-sizing: border-box;
+				display: inline-block;
+				height: .88rem;
+				line-height: .88rem;
+				text-align: center;
+				width: 50%;
+				&:nth-child(2n) {
+					.border-handle(1000,#ccc);
+				}
+				&:only-child {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

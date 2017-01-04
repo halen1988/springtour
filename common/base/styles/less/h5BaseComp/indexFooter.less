@@ -1,0 +1,184 @@
+@import url('./common.mixin.var.less');
+
+@footer-bgColor: white;
+@item-height: 88px;
+@item-font-size: 24px;
+@item-font-color: #666666;
+@item-font-family: @main-font;
+@item-container-padding-vertical: 20px 0;
+@item-border-color: #dddddd;
+@item-container-padding-horizen: 0, 30px;
+
+@corp-line-height: 24px;
+@corp-font-size: 12px;
+@corp-font-color: #666666;
+
+@corpurl-font-size: 14px;
+@corpurl-font-color: #999999;
+
+@plus-color: #666666;
+@link-color: #56B9FF;
+
+@inner-item-height: 80px;
+@inner-item-font-color: #000000;
+
+.footer {
+  width: 100%;
+  background-color: @footer-bgColor;
+
+  /*底部每个li 的定义*/
+  ol {
+    list-style: none;
+    .px-to-rem(padding, @item-container-padding-vertical);
+    //.flex-layout(space-between, flex-start, column);
+
+    .to-exp  {
+      width: 100%;
+      height: 0;
+      transition: height .3s ease-out;
+
+    }
+
+    &.innerList {
+      .px-to-rem(padding, 0 0 0 60px);
+
+      li {
+        .px-to-rem(height, @inner-item-height);
+
+        div {
+          width: 100%;
+
+          a {
+            color: @inner-item-font-color;
+            display: block;
+            height: 100%;
+            width: 100%;
+            .px-to-rem(line-height, @inner-item-height);
+            .fontset();
+          }
+        }
+
+      }
+    }
+    > li, .item-spread {
+      .flex-layout(space-between, center);
+
+      width: 100%;
+      .fontset();
+      color: @item-font-color;
+      .px-to-rem(height, @item-height);
+      .border-handle(0010, @item-border-color);
+
+    }
+    .item-spread {
+      .px-to-rem(padding, @item-container-padding-horizen);
+    }
+    > li {
+      .right {
+        bottom: 19px;
+        font-family: @main-font;
+        color: @plus-color;
+        transition: transform 0.3s;
+      }
+
+      /*定义右边+号的45度旋转*/
+      &.show div.right {
+        transition: transform 0.3s;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+      }
+
+      /*倒数第二行的下载部分*/
+      .logo {
+        @icon-width: 64px;
+        @icon-height: 64px;
+        @padding-left: 21px;
+        .bgIcon-mixin("logo_blue160x160.png", @icon-width, @icon-height);
+        .px-to-rem(width, @icon-width);
+        .px-to-rem(height, @icon-height);
+        margin: 0 auto;
+      }
+
+      .inlineBlock {
+        display: inline-block;
+      }
+
+      .leftgroup {
+        position: absolute;
+        left:0;
+        bottom: 5px;
+
+        .flex-layout(space-between, center);
+        .px-to-rem(padding, @item-container-padding-horizen);
+      }
+      .corp {
+        .px-to-rem(padding-left, 16px);
+      }
+      .corp-name {
+        font-family: @main-font;
+        .px-to-rem(font-size, 18px);
+        color: @corp-font-color;
+        .px-to-rem(line-height, @corp-line-height);
+        text-align: left;
+      }
+
+      .corp-url {
+        opacity: 0.44;
+        font-family: @main-font;
+        .px-to-rem(font-size, @corpurl-font-size);
+        color: @corpurl-font-color;
+        .px-to-rem(line-height, @corp-line-height);
+        text-align: left;
+      }
+
+      .downloadBtn {
+        @btn-height: 46px;
+        @btn-width: 112px;
+        @border-radius: 4px;
+
+        position: absolute;
+        right:0;
+        bottom: 11px;
+
+        background: #56b9ff;
+        .px-to-rem(border-radius, @border-radius);
+        .px-to-rem(width, @btn-width);
+        .px-to-rem(height, @btn-height);
+        .px-to-rem(line-height, @btn-height);
+        .px-to-rem(margin, @item-container-padding-horizen);
+        text-align: center;
+
+        font-family: @main-font;
+        .px-to-rem(font-size, 20px);
+        color: #ffffff;
+        a{color: #ffffff;}
+        text-align: center;
+      }
+
+    }
+    /*底部链接和copyright*/
+    .link {
+      .px-to-rem(font-size, 14px);
+      color: @link-color;
+      .px-to-rem(padding, @item-container-padding-horizen);
+    }
+
+    .copyright {
+      .px-to-rem(padding, @item-container-padding-horizen);
+      opacity: 0.8;
+      font-family:  @main-font;
+      .px-to-rem(font-size, 12px);
+      color: #cccccc;
+      letter-spacing: 0px;
+      line-height: 24px;
+      text-align: left;
+    }
+  }
+
+}
+
+.fontset() {
+  font-family: @item-font-family;
+  .px-to-rem(font-size, @item-font-size);
+}

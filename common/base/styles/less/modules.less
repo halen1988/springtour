@@ -1,0 +1,120 @@
+@import url('common.mixin.less');
+/*
+* 基础模块
+*/
+/*清除浮动 start*/
+.clear{
+	zoom:1;
+	&:after{
+		content: '';
+		display: block;
+		height:0;
+		overflow: hidden;
+		visibility: hidden;
+		clear: both;
+	}
+}
+/*清除浮动 end*/
+/*ratina 边框1px处理类 start*/
+.border-handle{
+	position: relative;
+}
+.border-handle input{
+	outline: none;
+}
+.border-handle:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	content: "";
+	box-sizing: border-box;
+	pointer-events: none;
+	border:0;
+	transform-origin: 0 0;
+	-webkit-transform-origin: 0 0;
+	transform: scale(1);
+	-webkit-transform: scale(1);
+	/*用虚拟键盘的时候需要z-index，不然border会被遮住*/
+	z-index: 1;
+}
+.ios *:before {
+	border-top-left-radius: 1px;
+	border-bottom-left-radius: 1px;
+}
+@media (-webkit-min-device-pixel-ratio: 2){
+	.border-handle:before {
+		width: 200%;
+		height: 200%;
+		transform: scale(0.5);
+		-webkit-transform: scale(0.5);
+	}
+}
+@media (-webkit-min-device-pixel-ratio: 3){
+	.border-handle:before {
+		width: 300%;
+		height: 300%;
+		transform: scale(0.3333);
+		-webkit-transform: scale(0.3333);
+	}
+}
+/*ratina 边框1px处理类 end*/
+
+/*背景图片颜色 start*/
+.fade-in{
+	transition: all ease-out 400ms;
+	-webkit-transition: all ease-out 400ms;
+}
+.img-bg{
+	>img{
+		opacity: 0;
+		filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	}
+	.img-lazy-load-success{
+		opacity: 1;
+		filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	}
+	.lazy-load-success{
+		opacity: 1 !important;
+		filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+		right:0px !important;
+	}
+}
+//元素加载基本动画
+.load-animate-init{
+	.transform-originAll(center center);
+	.transformAll(translateX(50px));
+	.transitionAll(all 0.3s cubic-bezier(0, 0, 0.2, 1));
+}
+.load-animate{
+	.transform-originAll(center center);
+	.transformAll(translateX(0px));
+}
+//元素加载skew动画
+.load-animate-skew-init{
+	opacity: 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	.transform-originAll(center bottom);
+	.transformAll(translateX(70px) skewX(-40deg));
+	.transitionAll(all 0.3s cubic-bezier(0, 0, 0.2, 1));
+}
+.load-animate-skew{
+	opacity: 1;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	.transformAll(translateX(0px) skewX(0deg));
+}
+
+
+/*背景图片颜色 end*/
+//去掉a标签的高亮
+a{
+	outline:none;
+	-moz-outline:none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.one-line {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}

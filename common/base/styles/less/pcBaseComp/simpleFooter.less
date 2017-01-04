@@ -1,0 +1,163 @@
+@import url('common.mixin.var.less');
+
+.simple-footer {
+
+  @sf-height: 64px;
+  @color_in_white: #333333;
+  @color_in_black: #fff;
+  @logo-height: 26px;
+  @logo-width: 29px;
+  @logo-share-height: 15px;
+  @logo-share-width: 19px;
+
+  .white(){
+    @bgColor: white;
+    @logorul: url("@{icon-path}logo_simple_29x25_black.png");
+    @color:@color_in_white;
+    @wechat_logorul:url("@{icon-path}wechat_black.png");
+    @sina_logorul:url("@{icon-path}sina_black.png");
+  }
+
+  .reverse(){
+    @bgColor: black;
+    @logorul: url("@{icon-path}logo_simple_29x25_white.png");
+    @color:@color_in_black;
+    @wechat_logorul:url("@{icon-path}wechat_white.png");
+    @sina_logorul:url("@{icon-path}sina_white.png");
+  }
+
+  @configRuleset:{
+    a, span {
+      color: @color;
+    }
+    background: @bgColor;
+    .logo {
+      background: @logorul center no-repeat;
+    }
+    .sina {
+      background: @sina_logorul center no-repeat;
+    }
+    .wechat {
+      background: @wechat_logorul center no-repeat;
+    }
+};
+
+  //.border-handle();
+
+  &.white {
+   .white();
+    @configRuleset();
+  }
+
+  &.reverse {
+    .reverse();
+    @configRuleset();
+  }
+
+  a, span {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+  }
+
+  &.white .line{
+    border-bottom: 1px solid #999;
+    .opacity(0.31);
+  }
+  &.reverse .line{
+    border-bottom: 1px solid #fff;
+    .opacity(0.2);
+  }
+  .sf-content-wrapper {
+    position: relative;
+    height: @sf-height;
+    width: @screen-large;
+    margin: 0 auto;
+
+    @{rootCls-950} & {
+      width: @screen-pad
+    }
+
+
+    li {
+      float: left;
+    }
+    .left li{  padding: 0 8px;font-family: @main-font}
+    .right li{  padding: 0 15px;}
+
+    .left, .right {
+      @magintop: @logo-height/2 *-1;
+      height: @logo-height;
+      line-height: @logo-height;
+      position: absolute;
+      top: 50%;
+      margin-top: @magintop;
+    }
+    .right {
+      right: 0;
+      a:hover{text-decoration: underline}
+    }
+
+    .logo {
+      width: @logo-width;
+      height: @logo-height;
+    }
+
+    .sina,.wechat{
+      width: @logo-share-width;
+      height: @logo-share-height;
+      display: block;
+      position: relative;
+      top: 7px;
+    }
+
+
+    @borderBG-width: 113px;
+    @borderBG-height: 130px;
+    @QR-width: 102px;
+
+    padding-top: 10px;
+    /*背景图片做边框*/
+    .borderBG {
+      display: none;
+      width: @borderBG-width;
+      height: @borderBG-height;
+      //.bgIcon-mixin("qr_bg.png", @borderBG-width, @borderBG-height);
+    }
+
+    .sina:hover,.wechat:hover{
+      .borderBG {
+        display: block;
+        position: absolute;
+        right: -29px;
+        bottom: 5px;
+      }
+      &:after{
+        content:"";
+        background: url("@{icon-path}qr_selector.png") no-repeat center;
+        display: block;
+        width: 13px;
+        height: 13px;
+        top: -8px;
+        right: 3px;
+        position: absolute;
+      }
+    }
+
+    /*所有二维码同意大小 和位移*/
+    .QR {
+      width: @QR-width;
+      height: @QR-width;
+      position: relative;
+      top: 14px;
+      left: (@borderBG-width - @QR-width )/2;
+    }
+    .sinaQR {
+      .bgIcon-mixin("qr_sina.png", @QR-width, @QR-width);
+    }
+    .wechatQR {
+      .bgIcon-mixin("qr_wechat.png", @QR-width, @QR-width);
+    }
+
+  }
+
+}

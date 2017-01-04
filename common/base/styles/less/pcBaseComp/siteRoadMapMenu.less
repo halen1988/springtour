@@ -1,0 +1,118 @@
+@import url("common.mixin.var.less");
+
+@roadmap-height:330px;
+@roadmap-font-color:#333;
+@roadmap-subcate-font-color:#666;
+
+.siteRoadmap{
+  height: @roadmap-height;
+  width:100%;
+  background: white;
+  //防止选中文字
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  //选中文字的颜色
+  div::-moz-selection{color:#000};
+  div::selection{color:#000};
+
+  //左上角菜单按钮的下拉列表内容的格式定义
+  .siteRoadmap-navi{
+    @dropdown-navi-padding-top:50px;
+    @dropdown-navi-padding-left:(70px/@base-width*100%);
+    @items-group-gap:45px;
+
+    padding: @dropdown-navi-padding-top 0 @dropdown-navi-padding-top @dropdown-navi-padding-left;
+    height: @roadmap-height - 2*@dropdown-navi-padding-top;
+
+    a{
+      font-family:STHeitiSC-Light;
+      font-size:12px;
+      color: @roadmap-font-color;
+      line-height:28px;
+      text-align:left;
+    }
+
+    //顶层大分类的颜色
+    .color1{color:#f22d47}
+    .color2{color:#9d6aca}
+    .color3{color:#79ca6a}
+    .color4{color:#f60}
+    .color5{color:#ffb100}
+
+    //一个大类目 成为一个section
+    .section{
+      float: left;
+      padding: 0 0 0 30px;
+      border-left: 1px solid #eee;
+      width: 10%;
+
+      &.section-first-of-type{
+        border-left:none;
+        padding-left: 0;
+        width: 45%;
+      }
+
+      &:first-of-type{
+        .section-first-of-type;
+      }
+    }
+
+    .details{
+      float: left;
+      width: 100%;
+
+      @{rootCls-lt950} &{
+        padding-right:0;
+      }
+    }
+    .navi-category{
+      font-size:18px;
+      padding-bottom: 27px;
+      display: inline-block;;
+    }
+
+    .items{
+      float: left;
+      width: 100px;
+    }
+
+    ul.subcate {
+      width: 20%;
+    }
+
+    ul.subcate a{
+      color: @roadmap-subcate-font-color;
+    }
+
+    ul.subcate li:first-of-type{
+      padding-bottom: 22px;
+      a {
+        color: @roadmap-font-color;
+        font-weight: bold;
+      }
+    }
+
+    //new 和 hot小图标的配置
+    .tipContainer{position: relative;}
+    .tips{
+      width: 26px;
+      height: 15px;
+      display: inline-block;
+      position: absolute;
+      top: -11px;
+      right: -28px;
+
+      &.new{
+        background:url("@{icon-path}pic_new.png") no-repeat center ;
+
+      }
+
+      &.hot{
+        background:url("@{icon-path}pic_hot.png") no-repeat center ;
+      }
+    }
+  }
+
+
+}
+
