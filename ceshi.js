@@ -7,6 +7,7 @@ function  Hello() {
    
   this.sayHello = function () { 
     console.log('Hello ' + name); 
+	console.log('333');
   }; 
 }; 
  
